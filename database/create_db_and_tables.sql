@@ -90,3 +90,16 @@ CREATE TABLE grades (
         CONSTRAINT grades_subjects FOREIGN KEY (fk_id_subj) REFERENCES subjects(id_subj),
         CONSTRAINT grades_school_cycles FOREIGN KEY (fk_id_cle) REFERENCES school_cycles(id_cle)
 );
+
+
+CREATE TABLE students_students_groups (
+  id_std_grp INT UNSIGNED NOT NULL AUTO_INCREMENT,
+  fk_id_std INT UNSIGNED NOT NULL,
+  fk_id_grp INT UNSIGNED NOT NULL,
+  created_at TIMESTAMP NULL DEFAULT CURRENT_TIMESTAMP,
+  updated_at TIMESTAMP NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  PRIMARY KEY (id_std_grp),
+  KEY fk_students_students_groups_groups (fk_id_std),
+  CONSTRAINT fk_students_students_groups_groups FOREIGN KEY (fk_id_grp) REFERENCES students_groups(id_grp),
+  CONSTRAINT fk_students_students_groups_students FOREIGN KEY (fk_id_std) REFERENCES students(id_std)
+);
